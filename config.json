@@ -1,29 +1,3 @@
-# jsbin
-
-Docker jsbin image, forked and updated from [euprogramador/jsbin](https://github.com/euprogramador/jsbin).
-
-## running
-
-docker run -d -p 3000:3000 robbash/jsbin
-
-
-generate configuration for https://github.com/jsbin/jsbin/blob/master/docs/running-your-own-jsbin.md#configuration and bind JSBIN_CONFIG enviroment variable for container
-
-- create a custom config.
-- running container a custom config.
-
-docker run -d -p 3000:3000 -v $(pwd)/data:/data -v $(pwd)/jsbin.json:/jsbin.json -e JSBIN_CONFIG=/jsbin.json robbash/jsbin
-
-
-## access
-
-open your browser http://localhost:3000/
-
-
-## example custom config base
-
-
-<code type="json">
 {
   "env": "development",
   "timezone": "UTC",
@@ -35,8 +9,9 @@ open your browser http://localhost:3000/
     "runner": false
   },
   "max-request-size": "1MB",
+  "max-age": 86400,
   "store": {
-    "adapter": "sqlite",
+    "adapter": "mysql",
     "sqlite": {
       "location": "jsbin.sqlite"
     },
@@ -49,6 +24,7 @@ open your browser http://localhost:3000/
       "collate": "utf8mb4_unicode_ci"
     }
   },
+  "session": {},
   "analytics": {
     "id": null,
     "render-id": null
@@ -67,6 +43,9 @@ open your browser http://localhost:3000/
   },
   "server": {
     "logger": "default"
+  },
+  "security": {
+    "allowAnonymousPreview": false
   },
   "client": {
     "user": true
@@ -113,14 +92,18 @@ open your browser http://localhost:3000/
     "blog",
     "bugs",
     "business",
+    "clone",
     "contacts",
     "collection",
     "collections",
     "css",
     "delete",
+    "default",
     "devices",
     "download",
     "downloads",
+    "edit",
+    "embed",
     "faq",
     "favorites",
     "favs",
@@ -136,10 +119,12 @@ open your browser http://localhost:3000/
     "goodies",
     "help",
     "home",
+    "history",
     "hooks",
     "images",
     "img",
     "inbox",
+    "index",
     "invitations",
     "invite",
     "issues",
@@ -155,19 +140,25 @@ open your browser http://localhost:3000/
     "nudge",
     "null",
     "open",
+    "output",
     "oauth",
+    "post",
     "pro",
+    "processor",
     "profile",
     "privacy",
     "rules",
     "runner",
+    "static",
     "scripts",
+    "save",
     "search",
     "sent",
     "settings",
     "share",
     "signup",
     "signin",
+    "status",
     "static",
     "statistics",
     "terms",
@@ -176,8 +167,11 @@ open your browser http://localhost:3000/
     "translate",
     "trends",
     "unarchive",
+    "update",
+    "upgrade",
     "user",
     "users",
+    "watch",
     "widgets",
     "tutorials",
     "video",
@@ -185,10 +179,3 @@ open your browser http://localhost:3000/
     "-"
   ]
 }
-</code>
-
-
-
-
-
-
